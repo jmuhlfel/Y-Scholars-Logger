@@ -1,0 +1,12 @@
+%table#students
+  %thead
+    %tr
+      %th{:class => @name_header}= link_to 'Name', dashboard_path(:sort => 'name'), :id => 'name_header'
+      %th Email
+      %th Hours Completed (eventually!)
+  %tbody
+    - @students.each do |student|
+      %tr
+        %td= student.name 
+        %td= student.email
+        %td= ""

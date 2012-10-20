@@ -1,0 +1,9 @@
+-if current_user
+  -if current_user.is_admin?
+    =render :partial => "header_admin"
+  -elsif current_user.is_tutor?
+    =render :partial => "header_tutor"
+  -else
+    =render :partial => "header_student"
+-else
+  =render :partial => "header_guest"

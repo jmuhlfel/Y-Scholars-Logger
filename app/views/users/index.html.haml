@@ -1,0 +1,16 @@
+=link_to "Create new account", new_user_path, :id => 'create_account_button'
+%br
+%br
+
+%table#users
+  %thead
+    %tr
+      %th{:class => @type_header}= link_to 'Account Type', users_path(:sort => 'type'), :id => 'type_header'
+      %th{:class => @name_header}= link_to 'Name', users_path(:sort => 'name'), :id => 'name_header'
+      %th Email
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= user.type
+        %td= user.name 
+        %td= user.email

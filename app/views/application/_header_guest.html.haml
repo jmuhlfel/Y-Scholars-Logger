@@ -1,0 +1,11 @@
+.navbar
+  .navbar-inner
+    =link_to root_path, :class => "brand" do
+      Y-Scholars Logger
+    %ul.nav
+      %li
+        =link_to "Home", root_path
+    .pull-right
+      %ul.nav
+        %li
+          =link_to "Login", login_path

@@ -1,0 +1,10 @@
+.page-header
+  %h1 Create Account
+
+=simple_form_for @user, :html => {:class => "form-horizontal"} do |f|
+  =f.input :type, :collection => ["Student", "Tutor", "Administrator"], :required => true, :prompt => "Select account type"
+  =f.input :name, :placeholder => "Name"
+  =f.input :email, :placeholder => "Email address"
+  =f.input :password, :placeholder => "Password"
+  =f.input :password_confirmation, :required => true, :placeholder => "Confirm password"
+  =f.button :submit, "Create Account", :class => "btn btn-primary"

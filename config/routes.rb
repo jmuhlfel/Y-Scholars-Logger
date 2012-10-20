@@ -1,12 +1,29 @@
 YScholar::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
-  resources :logger
+  
+  # Root (index) path
+  root :to => "logger#index"
+  
+  # Misc Routes
+  match "login" => "session#new", :as => "login"
+  match "logout" => "session#destroy", :as => "logout"
+  #match "new_user" => "user#new", :as => "new_user"
+  match "dashboard" => "dashboard#index", :as => "dashboard"
+  
+  # Resourceful routes
+  resources :users
+  resources :students, :controller => "users", :type => "Student"
+  resources :tutors, :controller => "users", :type => "Tutor"
+  resources :administrators, :controller => "users", :type => "Administrator"
+  #scope :controller => "users" do
+  #  resources :students, :tutors, :administrators
+  #end
+  resource :session, :only => [:new, :create, :destroy], :controller => "session"
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
-  match '/' => 'logger#index'
 
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
