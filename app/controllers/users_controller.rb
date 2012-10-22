@@ -5,6 +5,10 @@ class UsersController < ApplicationController
   end
 
   def new
+    if not session[:user_id] or not User.find(session[:user_id]).is_admin?
+      flash[:notice] = "You must be an admin to create new accounts"
+      redirect_to root_path
+    end
     @user = User.new
   end
   
