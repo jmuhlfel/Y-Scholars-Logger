@@ -20,12 +20,19 @@ class DashboardController < ApplicationController
   end
   
   def tutor_dashboard
+    render :tutor_dashboard
   end
   
   def student_dashboard
+    render :student_dashboard
+  end
+  
+  def parent_dashboard
+    render :parent_dashboard
   end
   
   def guest_dashboard
+    redirect_to :login
   end
 
 end

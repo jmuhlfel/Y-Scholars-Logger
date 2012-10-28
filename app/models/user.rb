@@ -20,6 +20,10 @@ class User < ActiveRecord::Base
   def is_student?
     self.is_a? Student
   end
+  
+  def is_parent?
+    self.is_a? Parent
+  end
 
   def to_s
     {
