@@ -11,6 +11,7 @@ YScholar::Application.routes.draw do
   #match "new_user" => "user#new", :as => "new_user"
   match "dashboard" => "dashboard#index", :as => "dashboard"
   
+  
   # Resourceful routes
   resources :users
   resources :students, :controller => "users", :type => "Student"
