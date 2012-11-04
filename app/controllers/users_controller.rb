@@ -23,8 +23,5 @@ class UsersController < ApplicationController
       render new_user_path
     end
   end
-  
-  def signin
-  end
 
 end
