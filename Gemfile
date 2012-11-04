@@ -5,20 +5,19 @@ gem 'execjs'
 gem 'haml-rails'
 gem 'simple_form'
 gem 'bcrypt-ruby'
-#gem 'authlogic' - use maybe?
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 group :development, :test do
-   gem 'sqlite3'
-   gem 'cucumber-rails'
-   gem 'cucumber-rails-training-wheels'
-   gem 'database_cleaner'
-   gem 'capybara'
-   gem 'launchy'
-   gem 'rspec-rails'
-   gem 'simplecov'
+  gem 'sqlite3'
+  gem 'cucumber-rails'
+  gem 'cucumber-rails-training-wheels'
+  gem 'database_cleaner'
+  gem 'capybara'
+  gem 'launchy'
+  gem 'rspec-rails'
+  gem 'simplecov'
 end
 group :production do
    gem 'pg'
