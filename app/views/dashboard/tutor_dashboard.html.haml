@@ -9,7 +9,7 @@
       %th Email
   %tbody
     - @students.each do |student|
-      %tr
+      %tr.tutordash
         %td= student.name 
         %td= student.email
         -if student.is_signed_in?

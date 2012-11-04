@@ -1823,7 +1823,7 @@ legend + .control-group {
 }
 
 table {
-  max-width: 100%;
+  max-width: 400px;
   background-color: transparent;
   border-collapse: collapse;
   border-spacing: 0;
@@ -1840,12 +1840,27 @@ table {
   line-height: 20px;
   text-align: left;
   vertical-align: top;
-  border-top: 1px solid #dddddd;
+}
+
+.admin {
+  border: 2px solid #dddddd;
+  text-align: center;
+  padding-top: 10px;
+  height: 50px;
+  width: 150px;
+}
+
+.users {
+  border-top: 1px solid black;
+}
+
+.tutordash {
+  border-top: 1px solid black;
 }
 
 .table th {
   font-weight: bold;
-}
+} 
 
 .table thead th {
   vertical-align: bottom;
