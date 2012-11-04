@@ -1,3 +1,7 @@
+=simple_form_for :dashboard, :url => dashboard_path do |f|
+  =f.input_field :query, :required => false, :label => false, :placeholder => "Search by name, email, or grade"
+  =f.button :submit, "Search", :class => "btn search-btn"
+
 %table.table#students
   %thead
     %tr
@@ -8,3 +12,7 @@
       %tr
         %td= student.name 
         %td= student.email
+        -if student.is_signed_in?
+          %td= button_to 'Sign Out', :action => "signout", :controller => "mentoring", :student_email => student.email
+        -else
+          %td= button_to 'Sign In', :action => "signin", :controller => "mentoring", :student_email => student.email

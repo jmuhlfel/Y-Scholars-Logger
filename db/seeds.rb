@@ -6,9 +6,43 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create!({:child_email => '',
-      :email => "admin@y-scholars",
-      :name => 'Administrator',
-      :password => 'abc123',
-      :password_confirmation => 'abc123',
-      :type => 'Administrator'})
+Administrator.create!({
+  :email => "admin@y-scholars",
+  :name => 'Administrator',
+  :password => 'abc123',
+  :password_confirmation => 'abc123'
+})
+
+Tutor.create!({
+  :email => "tutor@test.com",
+  :name => "Tutor Test",
+  :password => 'abc123',
+  :password_confirmation => 'abc123'
+})
+
+Student.create!({
+  :email => "test@test.com",
+  :name => "Test Student",
+  :password => 'abc123',
+  :password_confirmation => 'abc123'
+})
+
+Student.create!({
+  :email => "susan@test.com",
+  :name => "Susan the Student",
+  :password => 'abc123',
+  :password_confirmation => 'abc123'
+})
+
+Mentoring.create!({
+  :student_email => "test@test.com",
+  :tutor_email => "tutor@test.com",
+  :start_time => DateTime.new(2012,11,1,16,0,0),
+  :stop_time => DateTime.new(2012,11,1,18,0,0)
+})
+
+Mentoring.create!({
+  :student_email => "susan@test.com",
+  :tutor_email => "tutor@test.com",
+  :start_time => DateTime.new(2012,11,2,16,0,0)
+})

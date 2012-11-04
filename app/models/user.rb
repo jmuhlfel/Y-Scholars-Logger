@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
   def to_s
     {
       :name => self.name,
+      :type => self.type,
       :email => self.email,
       :password => self.password,
       :id => self.id

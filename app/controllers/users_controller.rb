@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   end
 
   def new
-    if not session[:user_id] or not User.find(session[:user_id]).is_admin?
+    if not current_user or not current_user.is_admin?
       flash[:notice] = "You must be an admin to create new accounts"
       redirect_to root_path
     end
@@ -22,6 +22,9 @@ class UsersController < ApplicationController
       flash[:error] = @user.errors.empty? ? "Error" : @user.errors.full_messages.to_sentence
       render new_user_path
     end
+  end
+  
+  def signin
   end
 
 end
