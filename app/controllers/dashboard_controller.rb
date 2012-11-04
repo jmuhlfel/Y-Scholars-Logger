@@ -20,6 +20,12 @@ class DashboardController < ApplicationController
   end
   
   def tutor_dashboard
+    mentoring_sessions = Mentoring.find_by_tutor_email(current_user.email)
+    if mentoring_sessions
+       @students = @mentoring_sessions.student.all
+    else
+       @students = []
+    end
     render :tutor_dashboard
   end
   

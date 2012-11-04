@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121020045851) do
+ActiveRecord::Schema.define(:version => 20121104024943) do
+
+  create_table "mentorings", :force => true do |t|
+    t.string   "tutor_email"
+    t.string   "student_email"
+    t.datetime "start_time"
+    t.datetime "stop_time"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
 
   create_table "sessions", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -19,11 +28,13 @@ ActiveRecord::Schema.define(:version => 20121020045851) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "child_email"
     t.string   "email"
     t.string   "name"
     t.string   "password_digest"
     t.string   "type"
+    t.string   "child_email"
+    t.string   "grade"
+    t.string   "hours_required"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
   end
