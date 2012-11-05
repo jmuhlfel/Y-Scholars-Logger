@@ -6,11 +6,11 @@
   %thead
     %tr
       %th{:class => @type_header}= link_to 'Account Type', users_path(:sort => 'type'), :id => 'type_header'
-      %th{:class => @name_header}= link_to 'Name', users_path(:sort => 'name'), :id => 'name_header'
+      %th{:class => @name_header, :id => 'users'}= link_to 'Name', users_path(:sort => 'name'), :id => 'name_header'
       %th Email
   %tbody
     - @users.each do |user|
       %tr
-        %td= user.type
-        %td= user.name 
-        %td= user.email
+        %td.users= user.type
+        %td.users= user.name 
+        %td.users= user.email

@@ -19,6 +19,8 @@ module NavigationHelpers
       '/users/new'
     when /^the logout\s?page$/
       '/logout'
+    when /^my dashboard$/
+      '/dashboard'
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
