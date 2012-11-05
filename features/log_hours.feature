@@ -8,14 +8,25 @@ Background:
   Given a student is in the database with email "test@y-scholars"
   And I am logged in as a tutor with email "tutor@test"
 
+Scenario: can see nothing if no students
+  Given I am on my dashboard
+  Then I should not see "test@y-scholars"
+
+Scenario: can see students if assigned them
+  Given I make mentoring session between "tutor@test" and "test@y-scholars"
+  And I am on my dashboard
+  Then I should see "test@y-scholars"
+
 Scenario: sign in a student
-  Given I sign in a student with email "test@y-scholars"
-  Then I should see "test@y-scholars" on my dashboard
+  Given I make mentoring session between "tutor@test" and "test@y-scholars"
+  And I am on my dashboard
+  And I press "Sign In"
+  Then I should see "test@y-scholars" 
   
 
 Scenario: sign out a student
-  Given a student with email "test@y-scholars" has been signed in for 2 hours under tutor "tutor@test"
-  And I sign out a student with email "test@y-scholars"
+  Given I make mentoring session between "tutor@test" and "test@y-scholars"
   And I am on my dashboard
-  Then I should not see "test@y-scholars"
-  And the student "test@y-scholars" should have 2 hours of tutoring
+  And "test@y-scholars" has been signed in
+  And I press "Sign Out"
+  Then I should see "test@y-scholars"

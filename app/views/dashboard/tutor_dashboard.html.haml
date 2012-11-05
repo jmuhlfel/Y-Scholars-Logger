@@ -13,6 +13,6 @@
         %td= student.name 
         %td= student.email
         -if student.is_signed_in?
-          %td= button_to 'Sign Out', :action => "signout", :controller => "mentoring", :student_email => student.email
+          %td= button_to 'Sign Out', :action => "signout", :controller => "mentoring", :student_email => student.email, :id => "signout"
         -else
           %td= button_to 'Sign In', :action => "signin", :controller => "mentoring", :student_email => student.email
