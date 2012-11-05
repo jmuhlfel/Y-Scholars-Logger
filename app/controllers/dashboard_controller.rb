@@ -25,9 +25,9 @@ class DashboardController < ApplicationController
   end
   
   def tutor_dashboard
-    mentoring_sessions = Mentoring.find_all_by_tutor_email(current_user.email, :order => "stop_time ASC")
+    mentoring_sessions = Mentoring.where("tutor_email = ?", current_user.email).order("stop_time DESC")
     unless mentoring_sessions.nil?
-      student_emails = mentoring_sessions.map(&:student_email)
+      student_emails = mentoring_sessions.pluck(:student_email)
       if @query
         @students = Student.where("email IN (?) AND (name LIKE ? OR email LIKE ? OR grade LIKE ?)",
                                   student_emails, "%#{@query}%","%#{@query}%","%#{@query}%")
