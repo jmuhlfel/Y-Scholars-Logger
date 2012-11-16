@@ -1,6 +1,6 @@
 class Student < User
   # attr_accessible :title, :body
-  
+  has_one :requirements, :foreign_key => 'grade', :primary_key => 'grade'
   def is_signed_in?
     mentorings = Mentoring.where("student_email = ?", self.email).order("stop_time ASC")
     unless mentorings.empty?

@@ -3,7 +3,7 @@
   
   %h5
     Hours:
-    %span{:style => "color: #f00"}= "%0.2f/%0.2f" % [@total_hours, 4]
+    %span{:style => "color: #f00"}= "%0.2f/%0.2f" % [@total_hours, @required_hours]
     %progress{:max => '4', :value =>@total_hours}
 
 %table.table#tutoring_sessions

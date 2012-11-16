@@ -48,6 +48,7 @@ class DashboardController < ApplicationController
     @sessions.each do |session|
       total_seconds += session.stop_time - session.start_time
     end
+    @required_hours = current_user.requirements.hours
     @total_hours = total_seconds / 3600
     render :student_dashboard
   end
