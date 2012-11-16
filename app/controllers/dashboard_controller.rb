@@ -50,6 +50,8 @@ class DashboardController < ApplicationController
     end
     @required_hours = current_user.requirements.hours
     @total_hours = total_seconds / 3600
+    @start_date = start_sun.to_date
+    @end_date = @start_date + 7.day
     render :student_dashboard
   end
   
