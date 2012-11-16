@@ -1,1 +1,22 @@
-%h1 'To be implemented'
+%h4 This week's mentoring sessions
+%div{:id => "progress"}
+  
+  %h5
+    Current Hours:
+    %span{:style => "color: #f00"}= "%0.2f/4" % @total_hours
+  %progress{:max => '4', :value =>@total_hours}
+
+%table.table#tutoring_sessions
+  %thead
+    %tr
+      %th Time in
+      %th Time out
+      %th Tutor
+      %th Hours
+  %tbody
+    - @sessions.each do |session|
+      %tr.tutordash
+        %td= session.start_time
+        %td= session.stop_time
+        %td= session.tutor_email
+        %td= ((session.stop_time - session.start_time)/3600).to_i
