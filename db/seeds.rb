@@ -46,3 +46,21 @@ Mentoring.create!({
   :tutor_email => "tutor@test.com",
   :start_time => DateTime.new(2012,11,2,16,0,0)
 })
+
+# Default hours for different grades
+Requirements.create!({
+  :grade => "9"
+  :hours => "4"
+})
+Requirements.create!({
+  :grade => "10"
+  :hours => "4"
+})
+Requirements.create!({
+  :grade => "11"
+  :hours => "3"
+})
+Requirements.create!({
+  :grade => "12"
+  :hours => "2"
+})
