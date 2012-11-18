@@ -41,6 +41,14 @@ class DashboardController < ApplicationController
   end
   
   def student_dashboard
+    now = DateTime.now
+    start_sun = now - now.wday
+    @sessions = Mentoring.where("student_email = ? AND stop_time > ? AND stop_time < ?", current_user.email, start_sun, now).all
+    total_seconds = 0
+    @sessions.each do |session|
+      total_seconds += session.stop_time - session.start_time
+    end
+    @total_hours = total_seconds / 3600
     render :student_dashboard
   end
   
