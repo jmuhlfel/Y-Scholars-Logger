@@ -14,3 +14,7 @@
         %td.users= user.type
         %td.users= user.name 
         %td.users= user.email
+
+= form_tag(dashboard_path, :action => "export_to_csv") do 
+  = submit_tag "Export To CSV" 
+
