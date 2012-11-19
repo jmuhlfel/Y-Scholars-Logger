@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
-gem 'therubyracer'
+gem 'execjs'
 gem 'haml-rails'
 gem 'simple_form'
 gem 'bcrypt-ruby'
@@ -18,7 +18,6 @@ group :development, :test do
   gem 'launchy'
   gem 'rspec-rails'
   gem 'simplecov'
-  gem 'fastercsv'
 
 end
 group :production do

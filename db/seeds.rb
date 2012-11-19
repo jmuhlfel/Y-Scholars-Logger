@@ -36,6 +36,15 @@ Student.create!({
   :grade => "9"
 })
 
+Parent.create!({
+  :email => "parent@test.com",
+  :child_email => "test@test.com",
+  :name => "Parent",
+  :password => 'abc123',
+  :password_confirmation => 'abc123',
+})
+
+
 Mentoring.create!({
   :student_email => "test@test.com",
   :tutor_email => "tutor@test.com",
