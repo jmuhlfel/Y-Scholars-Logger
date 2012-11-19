@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   has_secure_password
-  attr_accessible :name, :email, :password, :password_confirmation, :type, :child_email
+  attr_accessible :name, :email, :password, :password_confirmation, :type, :child_email, :grade
   
   # Validations
   validates :type, :presence => true

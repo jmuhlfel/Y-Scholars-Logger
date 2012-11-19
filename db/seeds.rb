@@ -24,14 +24,16 @@ Student.create!({
   :email => "test@test.com",
   :name => "Test Student",
   :password => 'abc123',
-  :password_confirmation => 'abc123'
+  :password_confirmation => 'abc123',
+  :grade => "10"
 })
 
 Student.create!({
   :email => "susan@test.com",
   :name => "Susan the Student",
   :password => 'abc123',
-  :password_confirmation => 'abc123'
+  :password_confirmation => 'abc123',
+  :grade => "9"
 })
 
 Mentoring.create!({
@@ -45,4 +47,22 @@ Mentoring.create!({
   :student_email => "susan@test.com",
   :tutor_email => "tutor@test.com",
   :start_time => DateTime.new(2012,11,2,16,0,0)
+})
+
+# Default hours for different grades
+Requirements.create!({
+  :grade => "9",
+  :hours => "4"
+})
+Requirements.create!({
+  :grade => "10",
+  :hours => "4"
+})
+Requirements.create!({
+  :grade => "11",
+  :hours => "3"
+})
+Requirements.create!({
+  :grade => "12",
+  :hours => "2"
 })
