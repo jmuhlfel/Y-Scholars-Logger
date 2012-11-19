@@ -8,7 +8,7 @@ Background:
   Given a student is in the database with email "bad@y-scholars"
   And a parent is in the database with student "bad@y-scholars" and email "parent@y-scholars"
   And a student is in the database with email "good@y-scholars"
-  And I am logged in as an administrator with email test_admin@y-scholars
+  And I am logged in as an administrator with email "test_admin@y-scholars"
 
 Scenario: alerts necessary for account are sent
   Given a student with email "bad@y-scholars" needs 3 hours this week

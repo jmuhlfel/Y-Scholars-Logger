@@ -13,4 +13,9 @@ class Student < User
       false
     end
   end
+  
+  def required_hours
+    Requirements.find_by_grade(self.grade)
+  end
+
 end

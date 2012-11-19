@@ -48,7 +48,7 @@ class DashboardController < ApplicationController
     @sessions.each do |session|
       total_seconds += session.stop_time - session.start_time
     end
-    @required_hours = current_user.requirements.hours
+    @required_hours = current_user.required_hours
     @total_hours = total_seconds / 3600
     @start_date = start_sun.to_date
     @end_date = @start_date + 7.day

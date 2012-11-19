@@ -1,10 +1,9 @@
 Given /^I am logged in as an administrator with email "(.*?)"$/ do |arg1|
-  User.create!({:child_email => '',
+  Administrator.create!({
       :email => arg1,
       :name => 'admin',
       :password => 'abc123',
-      :password_confirmation => 'abc123',
-      :type => 'Administrator'})
+      :password_confirmation => 'abc123'})
   visit '/login'
   fill_in 'session_email', :with => arg1
   fill_in 'session_password', :with => 'abc123'
@@ -17,12 +16,11 @@ Given /^I am logged in as an administrator with email "(.*?)"$/ do |arg1|
 end
 
 Given /^I am logged in as a tutor with email "(.*?)"$/ do |arg1|
-  User.create!({:child_email => '',
+  Tutor.create!({
       :email => arg1,
       :name => 'tutor',
       :password => 'abc123',
-      :password_confirmation => 'abc123',
-      :type => 'Tutor'})
+      :password_confirmation => 'abc123'})
   visit '/login'
   fill_in 'session_email', :with => arg1
   fill_in 'session_password', :with => 'abc123'
@@ -31,6 +29,30 @@ Given /^I am logged in as a tutor with email "(.*?)"$/ do |arg1|
     page.should have_content('tutor')
   else
     assert page.has_content?('tutor')
+  end
+end
+
+Given /^I am logged in as a student with email "(.*?)"$/ do |arg1|
+  visit '/login'
+  fill_in 'session_email', :with => arg1
+  fill_in 'session_password', :with => 'abc123'
+  click_button 'Login'
+  if page.respond_to? :should
+    page.should have_content('test student')
+  else
+    assert page.has_content?('test student')
+  end
+end
+
+Given /^I am logged in as a parent with email "(.*?)"$/ do |arg1|
+  visit '/login'
+  fill_in 'session_email', :with => arg1
+  fill_in 'session_password', :with => 'abc123'
+  click_button 'Login'
+  if page.respond_to? :should
+    page.should have_content('test parent')
+  else
+    assert page.has_content?('test parent')
   end
 end
 
@@ -59,19 +81,26 @@ Then /^I should see an account email "(.*?)" in the (.*) database$/ do |email, t
 end
 
 Given /^a student is in the database with email "(.*?)"$/ do |arg1|
-  User.create!({:child_email => '',
+  Student.create!({
       :email => arg1,
       :name => 'student',
+      :grade => 10,
       :password => 'abc123',
-      :password_confirmation => 'abc123',
-      :type => 'Student'})
+      :password_confirmation => 'abc123'})
 end
 
 Given /^a student with email "(.*?)" and name "(.*?)" is in the database$/ do |email, name|
-  User.create!({:child_email => '',
+  Student.create!({
       :email => email,
       :name => name,
       :password => 'abc123',
-      :password_confirmation => 'abc123',
-      :type => 'Student'})
+      :password_confirmation => 'abc123'})
+end
+
+Given /^a parent is in the database with student "(.*?)" and email "(.*?)"$/ do |student_email, email|
+  Parent.create!({:child_email => student_email,
+      :email => email,
+      :name => 'test parent',
+      :password => 'abc123',
+      :password_confirmation => 'abc123'})
 end
