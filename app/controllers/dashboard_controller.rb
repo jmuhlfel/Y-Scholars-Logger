@@ -52,6 +52,13 @@ class DashboardController < ApplicationController
     @total_hours = total_seconds / 3600
     @start_date = start_sun.to_date
     @end_date = @start_date + 7.day
+    red = "#f00"
+    green = "#00FF00"
+    if @total_hours / @required_hours.to_i >= 1
+      @color = green
+    else
+      @color = red
+    end
     render :student_dashboard
   end
   
