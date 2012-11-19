@@ -18,7 +18,6 @@ group :development, :test do
   gem 'launchy'
   gem 'rspec-rails'
   gem 'simplecov'
-  gem 'fastercsv'
 
 end
 group :production do

@@ -65,7 +65,6 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
-    fastercsv (1.5.5)
     ffi (1.1.5)
     ffi (1.1.5-x86-mingw32)
     gherkin (2.11.5)
@@ -186,7 +185,6 @@ DEPENDENCIES
   cucumber-rails-training-wheels
   database_cleaner
   execjs
-  fastercsv
   haml-rails
   jquery-rails
   launchy

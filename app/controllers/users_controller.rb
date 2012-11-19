@@ -2,6 +2,10 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+	respond_to do |format|
+	  format.html
+	  format.csv { send_data self.export_to_csv }
+	end
   end
 
   def new
@@ -24,29 +28,15 @@ class UsersController < ApplicationController
     end
   end  
 
+
   def export_to_csv
     @users = User.find(:all)
-    FasterCSV.open(CSV_FILE_PATH, "w") do |csv|
+    csv_string = CSV.generate do |csv|
       csv << ["type", "name", "email"]
       @users.each do |user|
         csv << [user.type, user.name, user.email]
       end 
     end
-   """
-	 @users= User.find(:all)
-    csv_string = CSV.generate do |csv|
-      csv << [type, name, email]
-      @users.each do |user|
-        csv << [ user.type, user.name, user.email]
-      end
-    end
-    
-    send_data csv_string,
-    :type => 'text/csv; charset=iso-8859-1; header=present',
-    :disposition => attachment; filename=user.csv
-
-    redirect_to users_path
-  """
   end
 
 end
