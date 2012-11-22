@@ -31,13 +31,18 @@ class DashboardController < ApplicationController
     unless mentoring_sessions.nil?
       student_emails = mentoring_sessions.pluck(:student_email)
       if @query
-        @students = Student.where("email IN (?) AND (name LIKE ? OR email LIKE ? OR grade LIKE ?)",
-                                  student_emails, "%#{@query}%","%#{@query}%","%#{@query}%")
+        @students = Student.where("name LIKE ? OR email LIKE ? OR grade LIKE ?",
+                                         "%#{@query}%","%#{@query}%","%#{@query}%")
       else
         @students = Student.find_all_by_email(student_emails)
       end
     else
-      @students = []
+      if @query
+        @students = Student.where("name LIKE ? OR email LIKE ? OR grade LIKE ?",
+                                         "%#{@query}%","%#{@query}%","%#{@query}%")
+      else
+        @students = []
+      end
     end
     render :tutor_dashboard
   end

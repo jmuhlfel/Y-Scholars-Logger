@@ -41,3 +41,15 @@ Given /^I search for "(.*?)"$/ do |arg1|
   fill_in 'dashboard_query', :with => arg1
   click_button 'Search'
 end
+
+Given /^a student with email "(.*?)" has (\d+) hours logged by "(.*?)"$/ do |student, hours, tutor|
+  now = DateTime.now()
+  Mentoring.create!({
+    :student_email => student,
+    :tutor_email => tutor,
+    :start_time => now,
+    :stop_time => now - hours.to_i.hours
+  })
+  
+end
+
