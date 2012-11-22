@@ -8,11 +8,11 @@ Background:
   Given a student is in the database with email "test@test.com"
   And I am logged in as a tutor with email "tutor@test.com"
 
-Scenario: can see nothing if no students
+Scenario: can see no students if not tutored
   Given I am on my dashboard
   Then I should not see "test@test.com"
 
-Scenario: can see students if assigned them
+Scenario: can see students if they have already been tutored
   Given I have tutored student with email "test@test.com" as "tutor@test.com" before
   And I am on my dashboard
   Then I should see "test@test.com"
@@ -22,6 +22,7 @@ Scenario: sign in a student
   And I am on my dashboard
   And I press "Sign In"
   Then I should see "test@test.com" 
+  And a student with email "test@test.com" should be signed in
   
 
 Scenario: sign out a student
@@ -29,3 +30,4 @@ Scenario: sign out a student
   And I am on my dashboard
   And I press "Sign Out"
   Then I should see "test@test.com"
+  And a student with email "test@test.com" should not be signed in

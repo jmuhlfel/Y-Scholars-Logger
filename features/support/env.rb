@@ -54,6 +54,7 @@ end
 #     DatabaseCleaner.strategy = :transaction
 #   end
 #
+# Default hours for different grades
 
 # Possible values are :truncation and :transaction
 # The :transaction strategy is faster, but might give you threading problems.

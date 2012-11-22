@@ -37,11 +37,6 @@ Given /^I am logged in as a student with email "(.*?)"$/ do |arg1|
   fill_in 'session_email', :with => arg1
   fill_in 'session_password', :with => 'abc123'
   click_button 'Login'
-  if page.respond_to? :should
-    page.should have_content('test student')
-  else
-    assert page.has_content?('test student')
-  end
 end
 
 Given /^I am logged in as a parent with email "(.*?)"$/ do |arg1|
@@ -61,6 +56,7 @@ Given /^I create an account for a(n)? ([A-Za-z]*) with email "(.*)"$/ do |an, ty
   fill_in 'user_name', :with => 'test name'
   fill_in 'user_password', :with => 'abc123'
   fill_in 'user_password_confirmation', :with => 'abc123'
+  fill_in 'user_grade', :with => '10'
   select type, :from => 'user_type'
   click_button "Create Account"
 end
@@ -84,7 +80,15 @@ Given /^a student is in the database with email "(.*?)"$/ do |arg1|
   Student.create!({
       :email => arg1,
       :name => 'student',
-      :grade => 10,
+      :grade => '10',
+      :password => 'abc123',
+      :password_confirmation => 'abc123'})
+end
+
+Given /^a tutor is in the database with email "(.*?)"$/ do |arg1|
+  Tutor.create!({
+      :email => arg1,
+      :name => 'test tutor',
       :password => 'abc123',
       :password_confirmation => 'abc123'})
 end
@@ -94,6 +98,7 @@ Given /^a student with email "(.*?)" and name "(.*?)" is in the database$/ do |e
       :email => email,
       :name => name,
       :password => 'abc123',
+      :grade => '10',
       :password_confirmation => 'abc123'})
 end
 
@@ -103,4 +108,23 @@ Given /^a parent is in the database with student "(.*?)" and email "(.*?)"$/ do 
       :name => 'test parent',
       :password => 'abc123',
       :password_confirmation => 'abc123'})
+end
+
+Given /^I set up the requirements$/ do
+  Requirements.create!({
+    :grade => "9",
+    :hours => "4"
+  })
+  Requirements.create!({
+    :grade => "10",
+    :hours => "4"
+  })
+  Requirements.create!({
+    :grade => "11",
+    :hours => "3"
+  })
+  Requirements.create!({
+    :grade => "12",
+    :hours => "2"
+  })
 end

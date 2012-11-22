@@ -50,12 +50,12 @@ class DashboardController < ApplicationController
     @sessions.each do |session|
       total_seconds += session.stop_time - session.start_time
     end
-    @required_hours = current_user.required_hours
+    @required_hours = current_user.requirements.hours
     @total_hours = total_seconds / 3600
     @start_date = start_sun.to_date
     @end_date = @start_date + 7.day
-    red = "#f00"
-    green = "#00FF00"
+    red = "#ff0000"
+    green = "#00ff00"
     if @total_hours / @required_hours.to_i >= 1
       @color = green
     else

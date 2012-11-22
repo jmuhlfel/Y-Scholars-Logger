@@ -17,6 +17,8 @@ module NavigationHelpers
       '/'
     when /^the add_account\s?page$/
       '/users/new'
+    when /^the user\s?page$/
+      '/users'
     when /^the logout\s?page$/
       '/logout'
     when /^my dashboard$/
