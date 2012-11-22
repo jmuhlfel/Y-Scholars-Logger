@@ -1,11 +1,37 @@
 .page-header
   %h1 Create Account
 
+:javascript
+  function init_options() {
+    modify_options()
+    $("#user_type.select").change(modify_options);
+  };
+  function modify_options() {
+    option = $("#user_type.select").val();
+    switch(option) {
+      case "Student":
+        $("#grade_input").fadeIn();
+        $("#child_email_input").fadeOut();
+        break;
+      case "Parent":
+        $("#child_email_input").fadeIn();
+        $("#grade_input").fadeOut();
+        break;
+      default:
+        $("#child_email_input").fadeOut();
+        $("#grade_input").fadeOut();
+    };
+  };
+  
+  window.onload = init_options;
+
 =simple_form_for @user, :html => {:class => "form-horizontal"} do |f|
   =f.input :type, :collection => ["Student", "Tutor", "Administrator", "Parent"], :required => true, :prompt => "Select account type"
   =f.input :name, :placeholder => "Name"
   =f.input :email, :placeholder => "Email address"
+  #grade_input=f.input :grade, :placeholder => "Grade"
+  #child_email_input=f.input :child_email, :placeholder => "Child email"
   =f.input :password, :placeholder => "Password"
   =f.input :password_confirmation, :required => true, :placeholder => "Confirm password"
-  =f.input :child_email, :placeholder => "Child email"
   =f.button :submit, "Create Account", :class => "btn btn-primary"
+
