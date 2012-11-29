@@ -20,3 +20,10 @@ Scenario: alerts are not sent when hours completed
   Given a student with email "good@y-scholars" needs 0 hours this week
   And I am on the alerts page
   Then I should not see "good@y-scholars"
+
+Scenario: alert email is sent
+  Given a student with email "bad@y-scholars" needs 3 hours this week
+  And I am on the alerts page
+  And I send an alert for student "bad@y-scholars"
+  Then "bad@y-scholars" should receive an email
+  And "parent@y-scholars" should receive an email

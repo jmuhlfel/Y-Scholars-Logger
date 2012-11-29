@@ -12,7 +12,8 @@ YScholar::Application.routes.draw do
   match "signout" => "mentoring#signout", :as => "signout"
   #match "new_user" => "user#new", :as => "new_user"
   match "dashboard" => "dashboard#index", :as => "dashboard"
-  
+  match "requirements" => "requirements#index", :as =>"requirements"
+  match "requirements/edit" => "requirements#edit", :as =>"requirements/edit"
   
   # Resourceful routes
   resources :users
