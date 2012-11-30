@@ -1,0 +1,13 @@
+%h4
+  Weekly hours requirements
+%table.table#requirements
+  %thead
+    %tr
+      %th Grade
+      %th Required Hours
+  %tbody
+    - @requirements.each do |requirement|
+      %tr
+        %td.grades= requirement.grade
+        %td.hours= requirement.hours
+        %td= link_to "Edit", edit_requirement_path(requirement.grade)
