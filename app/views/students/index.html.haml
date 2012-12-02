@@ -4,7 +4,7 @@
     %tr
       %th{:class => @name_header, :id => 'students'}= link_to 'Name', students_path(:sort => 'name'), :id => 'name_header'
       %th Email
-      %th Grade
+      %th{:class => @grade_header, :id => 'students'}= link_to 'Grade', students_path(:sort => 'grade'), :id => 'grade_header'
   %tbody
     - @students.each do |student|
       %tr

@@ -1,0 +1,13 @@
+%table.table#tutors
+  %thead
+    %tr
+      %th{:class => @name_header, :id => 'tutors'}= link_to 'Name', tutors_path(:sort => 'name'), :id => 'name_header'
+      %th Email
+      %th Students
+  %tbody
+    - @tutors.each do |tutor|
+      %tr
+        %td.tutors= tutor.name 
+        %td.tutors= tutor.email
+        
+

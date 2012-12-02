@@ -1,8 +1,5 @@
 class Student < User
-  attr_accessible :grade
   has_one :requirements, :foreign_key => 'grade', :primary_key => 'grade'
-  
-  validates :grade, :presence => true
   
   
   def is_signed_in?

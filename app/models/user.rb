@@ -32,7 +32,8 @@ class User < ActiveRecord::Base
       :email => self.email,
       :password => self.password,
       :id => self.id,
-      :grade => self.grade
+      :grade => self.grade,
+      :hours_required => self.hours_required
     }
   end
   
