@@ -1,0 +1,20 @@
+
+%table.table#students
+  %thead
+    %tr
+      %th{:class => @name_header, :id => 'students'}= link_to 'Name', students_path(:sort => 'name'), :id => 'name_header'
+      %th Email
+      %th Grade
+  %tbody
+    - @students.each do |student|
+      %tr
+        %td.students= student.name 
+        %td.students= student.email
+        %td.students= student.grade
+        
+        
+-#= form_tag(users_path, :action => "export_to_csv", :format => "csv") do 
+-#  = submit_tag "Export To CSV" 
+
+= link_to "Export To CSV", users_path(:format => :csv), :format => 'csv', :action => "export_to_csv"
+

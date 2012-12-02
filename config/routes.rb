@@ -16,7 +16,7 @@ YScholar::Application.routes.draw do
   # Resourceful routes
   resources :users
   resources :requirements
-  resources :students, :controller => "users", :type => "Student"
+  resources :students, :type => "Student"
   resources :tutors, :controller => "users", :type => "Tutor"
   resources :administrators, :controller => "users", :type => "Administrator"
   resource :session, :only => [:new, :create, :destroy], :controller => "session"

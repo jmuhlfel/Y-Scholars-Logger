@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   has_secure_password
-  attr_accessible :name, :email, :password, :password_confirmation, :type, :child_email, :grade
+  attr_accessible :name, :email, :password, :password_confirmation, :type, :child_email, :grade, :hours_required
   
   # Validations
   validates :type, :presence => true
@@ -31,7 +31,8 @@ class User < ActiveRecord::Base
       :type => self.type,
       :email => self.email,
       :password => self.password,
-      :id => self.id
+      :id => self.id,
+      :grade => self.grade
     }
   end
   
