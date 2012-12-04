@@ -5,16 +5,18 @@
       %th{:class => @name_header, :id => 'students'}= link_to 'Name', students_path(:sort => 'name'), :id => 'name_header'
       %th Email
       %th{:class => @grade_header, :id => 'students'}= link_to 'Grade', students_path(:sort => 'grade'), :id => 'grade_header'
+      %th Required Hours
   %tbody
     - @students.each do |student|
       %tr
-        %td.students= student.name 
+        %td.students= link_to "#{student.name}", student_path(student) 
         %td.students= student.email
         %td.students= student.grade
+        %td.students= student.requirements.hours
         
         
 -#= form_tag(users_path, :action => "export_to_csv", :format => "csv") do 
 -#  = submit_tag "Export To CSV" 
 
-= link_to "Export To CSV", users_path(:format => :csv), :format => 'csv', :action => "export_to_csv"
+= link_to "Export To CSV", students_path(:format => :csv), :format => 'csv', :action => "export_to_csv"
 

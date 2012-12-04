@@ -1,0 +1,16 @@
+%h2 Details about #{@student.name}
+
+%table.table#students_data
+  %thead
+    %tr
+      %th Time in
+      %th Time out
+      %th Tutor
+      %th Hours
+  %tbody
+    - @sessions.each do |session|
+      %tr.student_data
+        %td= session.start_time
+        %td= session.stop_time
+        %td= session.tutor.name
+        %td= ((session.stop_time - session.start_time)/3600).to_i
