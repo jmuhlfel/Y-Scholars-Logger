@@ -1,11 +1,12 @@
 %h2 Details about #{@student.name}
 
 =simple_form_for @student, :html => {:class => "form-horizontal"} do |f|
-  =f.input :custom_hours, :collection => (1..9), :required => true, :prompt => "New weekly requirement"
+  =f.input :custom_hours, :collection => (1..9), :label => "Teen Improvement Program", :prompt => "New weekly requirement"
   =f.button :submit, "Set Required Hours", :class => "btn btn-primary"
 
-=simple_form_for @student, :html => {:class => "form-horizontal"} do |f|
-  =f.button :submit, "Clear Custom Hours", :class => "btn btn-primary"
+- if @student.custom_hours.present?
+  =simple_form_for @student, :html => {:class => "form-horizontal"} do |f|
+    =f.button :submit, "Clear Custom Hours", :class => "btn btn-primary"
 
 %table.table#students_data
   %thead

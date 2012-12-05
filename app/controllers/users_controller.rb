@@ -1,11 +1,16 @@
 class UsersController < ApplicationController
 
   def index
-    @users = User.all
-	respond_to do |format|
-	  format.html
-	  format.csv { send_data self.export_to_csv }
-	end
+    @users = User.scoped
+    if params[:sort] == "type"
+      @users = @users.order("type")
+    elsif params[:sort] == "name"
+      @users = @users.order("name")
+    end
+	  respond_to do |format|
+	    format.html
+	    format.csv { send_data self.export_to_csv }
+	  end
   end
 
   def new
