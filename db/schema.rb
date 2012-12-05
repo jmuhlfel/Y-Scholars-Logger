@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(:version => 20121116001334) do
     t.string   "type"
     t.string   "child_email"
     t.string   "grade"
-    t.string   "hours_required"
+    t.string   "custom_hours"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
   end

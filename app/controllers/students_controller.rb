@@ -31,15 +31,40 @@ class StudentsController < ApplicationController
     @end_date = @start_date + 7.day
   end
   
+  def update
+    if !params['student'].present?
+      student = Student.find_by_id(params["id"])
+      if params['commit'] == "Clear Custom Hours"
+        student.update_attribute(:custom_hours, nil)
+        flash[:notice] = "Custom required hours for #{student.name} cleared"
+      elsif params['student']['custom_hours'].present?
+        student.update_attribute(:custom_hours, params['student']['custom_hours'])
+        flash[:notice] = "Custom required hours for #{student.name} set to #{student.custom_hours}"
+      end
+    end
+    redirect_to student_path
+  end
+  
+  def clear_custom_hours
+    student = Student.find_by_id(params["id"])
+   
+    redirect_to student_path
+  end
+  
   def export_to_csv
     @students = Student.all
     csv_string = CSV.generate do |csv|
-      csv << ["student","start", "stop", "email"]
+      csv << ["Student name","grade","total"]
       @students.each do |student|
-        @sessions = Mentoring.where("student_email = ?", student.email).all  
+        now = DateTime.now
+        start_sun = (now - now.wday).beginning_of_day
+        @sessions = Mentoring.where("student_email = ? AND stop_time >= ? AND stop_time <= ?", student.email, start_sun, now).all
+        total_seconds = 0
         @sessions.each do |session|
-          csv << [student.name, session.start_time, session.stop_time, session.tutor.name]
-        end 
+          total_seconds += session.stop_time - session.start_time
+        end
+        @total_hours = total_seconds / 3600 
+        csv << [student.name, student.grade, "#{@total_hours}"]
       end
     end
   end

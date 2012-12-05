@@ -26,7 +26,11 @@ class Student < User
   end
   
   def required_hours
-    Requirements.find_by_grade(self.grade).hours
+    if !self.custom_hours.nil?
+      self.custom_hours
+    else
+      Requirements.find_by_grade(self.grade).hours
+    end
   end
   
   def hours_completed
