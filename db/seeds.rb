@@ -55,7 +55,7 @@ Mentoring.create!({
 Mentoring.create!({
   :student_email => "susan@test.com",
   :tutor_email => "tutor@test.com",
-  :start_time => DateTime.new(2012,11,2,16,0,0)
+  :start_time => DateTime.new(2012,11,2,16,0,0),
   :stop_time => DateTime.new(2012,11,2,18,0,0)
 })
 
