@@ -54,12 +54,17 @@ class StudentsController < ApplicationController
   def export_to_csv
     @students = Student.all
     csv_string = CSV.generate do |csv|
-      csv << ["student","start", "stop", "email"]
+      csv << ["Student name","grade","total"]
       @students.each do |student|
-        @sessions = Mentoring.where("student_email = ?", student.email).all  
+        now = DateTime.now
+        start_sun = (now - now.wday).beginning_of_day
+        @sessions = Mentoring.where("student_email = ? AND stop_time >= ? AND stop_time <= ?", student.email, start_sun, now).all
+        total_seconds = 0
         @sessions.each do |session|
-          csv << [student.name, session.start_time, session.stop_time, session.tutor.name]
-        end 
+          total_seconds += session.stop_time - session.start_time
+        end
+        @total_hours = total_seconds / 3600 
+        csv << [student.name, student.grade, "#{@total_hours}"]
       end
     end
   end
