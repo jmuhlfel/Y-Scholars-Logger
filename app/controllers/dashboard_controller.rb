@@ -50,6 +50,7 @@ class DashboardController < ApplicationController
   def student_dashboard
     now = DateTime.now
     start_sun = (now - now.wday).beginning_of_day
+    @student = current_user
     @sessions = Mentoring.where("student_email = ? AND stop_time >= ? AND stop_time <= ?", current_user.email, start_sun, now).all
     total_seconds = 0
     @sessions.each do |session|
@@ -72,13 +73,13 @@ class DashboardController < ApplicationController
   def parent_dashboard
     now = DateTime.now
     start_sun = (now - now.wday).beginning_of_day
-    student = User.find_by_email(current_user.child_email)
+    @student = User.find_by_email(current_user.child_email)
     @sessions = Mentoring.where("student_email = ? AND stop_time >= ? AND stop_time <= ?", current_user.child_email, start_sun, now).all
     total_seconds = 0
     @sessions.each do |session|
       total_seconds += session.stop_time - session.start_time
     end
-    @required_hours = student.requirements.hours
+    @required_hours = @student.requirements.hours
     @total_hours = total_seconds / 3600
     @start_date = start_sun.to_date
     @end_date = @start_date + 7.day

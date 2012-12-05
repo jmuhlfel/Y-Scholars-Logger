@@ -20,13 +20,6 @@ Given /^student with email "(.*?)" is signed in with "(.*?)"$/ do |email, tutor_
   })
 end
 
-Given /^a student with email "(.*?)" needs ([0-9]) hours this week$/ do |email, hours|
-  student = Student.find_by_email(email)
-  requirement = Requirements.find_by_grade(student.grade)
-  requirement.hours = hours.to_str
-  requirement.save!
-end
-
 Then /^a student with email "(.*?)" should( not)? be signed in$/ do |email, not_signed_in|
   student = Student.find_by_email(email)
   signed_in = student.is_signed_in?
