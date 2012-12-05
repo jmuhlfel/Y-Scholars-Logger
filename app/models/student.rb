@@ -20,6 +20,11 @@ class Student < User
     end
   end
   
+  def current_mentoring_session
+    mentorings = Mentoring.where("student_email = ? AND stop_time IS NULL", self.email)
+    return mentorings.first
+  end
+  
   def required_hours
     Requirements.find_by_grade(self.grade).hours
   end
