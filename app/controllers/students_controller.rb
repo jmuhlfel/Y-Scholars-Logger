@@ -32,13 +32,15 @@ class StudentsController < ApplicationController
   end
   
   def update
-    student = Student.find_by_id(params["id"])
-    if params['commit'] == "Clear Custom Hours"
-      student.update_attribute(:custom_hours, nil)
-      flash[:notice] = "Custom required hours for #{student.name} cleared"
-    elsif params['student']['custom_hours'].present?
-      student.update_attribute(:custom_hours, params['student']['custom_hours'])
-      flash[:notice] = "Custom required hours for #{student.name} set to #{student.custom_hours}"
+    if !params['student'].present?
+      student = Student.find_by_id(params["id"])
+      if params['commit'] == "Clear Custom Hours"
+        student.update_attribute(:custom_hours, nil)
+        flash[:notice] = "Custom required hours for #{student.name} cleared"
+      elsif params['student']['custom_hours'].present?
+        student.update_attribute(:custom_hours, params['student']['custom_hours'])
+        flash[:notice] = "Custom required hours for #{student.name} set to #{student.custom_hours}"
+      end
     end
     redirect_to student_path
   end

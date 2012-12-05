@@ -2,11 +2,10 @@
 
 =simple_form_for @student, :html => {:class => "form-horizontal"} do |f|
   =f.input :custom_hours, :collection => (1..9), :required => true, :prompt => "New weekly requirement"
-  =f.button :submit, "Set Required Hours", :class => "btn btn-primary search-btn"
+  =f.button :submit, "Set Required Hours", :class => "btn btn-primary"
 
-- if @student.custom_hours.present?
-  =simple_form_for @student, :html => {:class => "form-horizontal"} do |f|
-    =f.button :submit, "Clear Custom Hours", :class => "btn btn-primary search-btn"
+=simple_form_for @student, :html => {:class => "form-horizontal"} do |f|
+  =f.button :submit, "Clear Custom Hours", :class => "btn btn-primary"
 
 %table.table#students_data
   %thead
