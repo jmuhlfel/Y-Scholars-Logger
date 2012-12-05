@@ -13,7 +13,6 @@ Scenario: put a student on the improvement program
   Given I view a student with email "bad@y-scholars"
   And I put them on the improvement program with 5 hours
   Then the student with email "bad@y-scholars" weekly hour requirement should be 5 hours
-  Given I press "Clear Custon Hours"
 
 Scenario: take a student off the improvement program
   Given I view a student with email "bad@y-scholars"
