@@ -13,6 +13,7 @@ YScholar::Application.routes.draw do
   #match "new_user" => "user#new", :as => "new_user"
   match "dashboard" => "dashboard#index", :as => "dashboard"
   match "send_alert" => "students#send_alert"
+  match "clear_custom_hours" => "students#clear_custom_hours"#, :type => "Student", :action => "clear_custom_hours"
 
   # Resourceful routes
   resources :users
