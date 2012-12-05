@@ -1,7 +1,14 @@
 class StudentsController < ApplicationController
 
   def index
-    @students = Student.all
+    @students = Student.scoped
+    if params[:sort] == "name"
+      @students = @students.order("name")
+    elsif params[:sort] == "grade"
+      @students = @students.order("grade")
+    elsif params[:sort] == "hours_completed"
+      @students = @students.sort_by(&:hours_completed)
+    end
     respond_to do |format|
       format.html
       format.csv { send_data self.export_to_csv }
@@ -18,7 +25,7 @@ class StudentsController < ApplicationController
     @sessions.each do |session|
       total_seconds += session.stop_time - session.start_time
     end
-    @required_hours = @student.requirements.hours
+    @required_hours = @student.required_hours
     @total_hours = total_seconds / 3600
     @start_date = start_sun.to_date
     @end_date = @start_date + 7.day

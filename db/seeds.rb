@@ -48,8 +48,8 @@ Parent.create!({
 Mentoring.create!({
   :student_email => "test@test.com",
   :tutor_email => "tutor@test.com",
-  :start_time => DateTime.new(2012,11,1,16,0,0),
-  :stop_time => DateTime.new(2012,11,1,18,0,0)
+  :start_time => DateTime.new(2012,12,4,16,0,0),
+  :stop_time => DateTime.new(2012,12,4,18,0,0)
 })
 
 Mentoring.create!({
