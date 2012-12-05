@@ -43,4 +43,8 @@ class StudentsController < ApplicationController
       end
     end
   end
+  
+  def send_alert
+    redirect_to students_path
+  end
 end
