@@ -5,15 +5,20 @@
       %th{:class => @name_header, :id => 'students'}= link_to 'Name', students_path(:sort => 'name'), :id => 'name_header'
       %th Email
       %th{:class => @grade_header, :id => 'students'}= link_to 'Grade', students_path(:sort => 'grade'), :id => 'grade_header'
-      %th Required Hours
+      %th{:class => @hours_completed_header, :id => 'students'}= link_to 'Hours Completed', students_path(:sort => 'hours_completed'), :id => 'hours_completed_header'
+      %th Progress
+      %th Send Alert
   %tbody
     - @students.each do |student|
       %tr
         %td.students= link_to "#{student.name}", student_path(student) 
         %td.students= student.email
         %td.students= student.grade
-        %td.students= student.requirements.hours
-        
+        %td.students= student.hours_completed.to_s + "/" + student.required_hours
+        %td.students
+          %progress{:max => student.required_hours, :value => student.hours_completed}
+        - if student.required_hours.to_i - student.hours_completed > 0
+          %td.students= "test"
         
 -#= form_tag(users_path, :action => "export_to_csv", :format => "csv") do 
 -#  = submit_tag "Export To CSV" 
