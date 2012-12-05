@@ -70,6 +70,9 @@ class StudentsController < ApplicationController
   end
   
   def send_alert
+    flash[:notice] = "Sent an alert to student #{params[:student_email]}"
+    student = Student.find_by_email(params[:student_email])
+    AlertsMailer.alert_student_notification(student).deliver
     redirect_to students_path
   end
 end
