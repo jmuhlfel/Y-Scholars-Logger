@@ -1,7 +1,7 @@
 %h2 Details about #{@student.name}
 
 =simple_form_for @student, :html => {:class => "form-horizontal"} do |f|
-  =f.input :custom_hours, :collection => (1..9), :required => true, :prompt => "New weekly requirement"
+  =f.input :custom_hours, :collection => (1..9), :label => "Teen Improvement Program", :prompt => "New weekly requirement", :class => "search-btn"
   =f.button :submit, "Set Required Hours", :class => "btn btn-primary search-btn"
 
 - if @student.custom_hours.present?
