@@ -4304,11 +4304,6 @@ input[type="submit"].btn.btn-mini {
   margin-top: 0;
 }
 
-.search-btn {
-  display: inline-block;
-  margin-bottom: 9px;
-}
-
 .navbar-search {
   position: relative;
   float: left;

@@ -11,7 +11,12 @@
  *= require_self
  *= require_tree .
  */
- 
+
+.search-btn {
+  display: inline-block;
+  margin-bottom: 9px;
+}
+
 #error {
     font-family: Helvetica, arial, freesans, clean, sans-serif;
     font-size: 14px;
