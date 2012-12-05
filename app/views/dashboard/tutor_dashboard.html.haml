@@ -1,18 +1,29 @@
-=simple_form_for :dashboard, :url => dashboard_path do |f|
-  =f.input_field :query, :required => false, :label => false, :placeholder => "Search by name, email, or grade"
-  =f.button :submit, "Search", :class => "btn search-btn"
+%div{:style => "width:80%"}
+  =simple_form_for :dashboard, :url => dashboard_path do |f|
+    =f.input_field :query, :required => false, :label => false, :placeholder => "Search by name, email, or grade"
+    =f.button :submit, "Search", :class => "btn search-btn"
 
-%table.table#students
-  %thead
-    %tr
-      %th{:class => @name_header}= link_to 'Name', users_path(:sort => 'name'), :id => 'name_header'
-      %th Email
-  %tbody
-    - @students.each do |student|
-      %tr.tutordash
-        %td= student.name 
-        %td= student.email
-        -if student.is_signed_in?
-          %td= button_to 'Sign Out', :action => "signout", :controller => "mentoring", :student_email => student.email, :id => "signout"
-        -else
-          %td= button_to 'Sign In', :action => "signin", :controller => "mentoring", :student_email => student.email
+  %table.table#students
+    %thead
+      %tr
+        %th{:class => @name_header}= link_to 'Name', users_path(:sort => 'name'), :id => 'name_header'
+        %th Email
+    %tbody
+      - @students.each do |student|
+        %tr.tutordash
+          %td= student.name 
+          %td= student.email
+          -if student.is_signed_in?
+            %td
+              Signed in at #{student.current_mentoring_session.start_time.strftime("%H:%M")}
+              = form_tag signout_path do
+                = text_field_tag "time", DateTime.now.strftime("%H:%M"), :style => "width:40px"
+                = hidden_field_tag "student_email", student.email
+                = submit_tag 'Sign Out'
+          -else
+            %td
+              Sign in Time
+              = form_tag signin_path do
+                = text_field_tag "time", DateTime.now.strftime("%H:%M"), :style => "width:40px"
+                = hidden_field_tag "student_email", student.email
+                = submit_tag 'Sign In'

@@ -8,7 +8,7 @@ class MentoringController < ApplicationController
     Mentoring.create!({
       :student_email => params[:student_email],
       :tutor_email => current_user.email,
-      :start_time => DateTime.now()
+      :start_time => DateTime.strptime(params[:time], "%H:%M")
     })
     redirect_to :dashboard
   end
@@ -22,7 +22,7 @@ class MentoringController < ApplicationController
     raise "Student not being tutored" unless not mentorings.empty?
     mentoring = mentorings.first
     # their current mentoring session is stopped now and saved
-    mentoring.stop_time = DateTime.now()
+    mentoring.stop_time = DateTime.strptime(params[:time], "%H:%M")
     mentoring.save    
     redirect_to :dashboard
   end
