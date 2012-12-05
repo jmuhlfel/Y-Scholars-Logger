@@ -23,6 +23,8 @@ module NavigationHelpers
       '/logout'
     when /^my dashboard$/
       '/dashboard'
+    when /^the alerts page$/
+      '/students'
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

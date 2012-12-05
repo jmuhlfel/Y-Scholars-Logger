@@ -18,7 +18,7 @@
         %td.students
           %progress{:max => student.required_hours, :value => student.hours_completed}
         - if student.required_hours.to_i - student.hours_completed > 0
-          %td.students= button_to "Send Alert", send_alert_path(:student_email => student.email)
+          %td.students= button_to "Send Alert", send_alert_path(:student_email => student.email), :name => "alert_#{student.email}", :id => "alert_#{student.email}"
         
 -#= form_tag(users_path, :action => "export_to_csv", :format => "csv") do 
 -#  = submit_tag "Export To CSV" 

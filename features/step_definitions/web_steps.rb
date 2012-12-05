@@ -252,3 +252,17 @@ end
 Then /^show me the page$/ do
   save_and_open_page
 end
+
+Then /^the page should( not)? have element with name "(.*)"$/ do |isfalse, string|
+  if isfalse
+    page.should have_no_selector(:xpath, "//*[@name='#{string}']")
+  else
+    page.should have_selector(:xpath, "//*[@name='#{string}']")
+  end
+end
+
+Then /^"(.*?)" should receive an email$/ do |addr|
+  mail = ActionMailer::Base.deliveries.last
+
+  assert_equal addr, mail['to'].to_s
+end
