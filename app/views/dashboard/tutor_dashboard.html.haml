@@ -1,4 +1,4 @@
-%div{:style => "width:80%"}
+%div{:style => "width:100%"}
   =simple_form_for :dashboard, :url => dashboard_path do |f|
     =f.input_field :query, :required => false, :label => false, :placeholder => "Search by name, email, or grade"
     =f.button :submit, "Search", :class => "btn search-btn"
