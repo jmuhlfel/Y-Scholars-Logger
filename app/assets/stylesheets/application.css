@@ -11,3 +11,37 @@
  *= require_self
  *= require_tree .
  */
+ 
+#error {
+    font-family: Helvetica, arial, freesans, clean, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: bold;
+    background-color:#FE2020;
+    text-align: center;
+    padding: 5px;
+}
+
+#warning {
+    font-family: Helvetica, arial, freesans, clean, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: bold;
+    background-color:#FFFF00;
+    text-align: center;
+    padding: 5px;
+}
+
+#notice {
+    font-family: Helvetica, arial, freesans, clean, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: bold;
+    background-color:#88AAFF;
+    text-align: center;
+    padding: 5px;
+}
+
